@@ -14,6 +14,7 @@ def login(request):
         logged_user = user[0]
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.hash_pw.encode()):
             request.session['userid'] = logged_user.id
+            request.session['username'] = logged_user.first_name
             return redirect('/success')
     return redirect('/')
 
@@ -48,8 +49,11 @@ def reg(request):
         return redirect('/success')
 
 def success(request):
-    return render(request, "success.html")
+    if request.session['userid']:
+        return render(request, "success.html")
+    else:
+        return redirect('/')
 
 def logout(request):
-    request.session.delete['userid']
+    request.session.flush()
     return redirect('/')

@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="wrapper">
-    <h2>Exito! Bienvenido, {{request.session.userid.first_name}}!</h2>
+    <h2>Exito! Bienvenido, {{request.session.username}}!</h2>
     <h3 class="text-success">Registro o ingreso exitoso</h3>
     </div>
-    <a class="btn btn-danger" href="/">Log out</a>
+    <a class="btn btn-danger" href="/logout">Log out</a>
 </body>
 </html>
